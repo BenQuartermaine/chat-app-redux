@@ -1,9 +1,14 @@
 import React from 'react';
 
 const App = () => {
-  return (
+
+
+
+ return (
     <div className="app">
-      <p>Chat App</p>
+      <ChannelList />
+      <MessageList />
+      <MessageForm />
     </div>
   );
 };
