@@ -3,7 +3,7 @@ import React from 'react';
 const App = () => {
   return (
     <div className="app">
-      <p>React + Redux starter</p>
+      <p>Chat App</p>
     </div>
   );
 };
