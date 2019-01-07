@@ -11,10 +11,10 @@ import App from './components/app';
 import '../assets/stylesheets/application.scss';
 
 // Importing reducers
-// import messagesReducer from './messages_reducer';
-// import channelsReducer from './channels_reducer';
-// import currentUserReducer from './current_user_reducer';
-// import selectedChannelReducer from './selected_channel_reducer';
+import messagesReducer from './reducers/messages_reducer';
+import channelsReducer from './reducers/channels_reducer';
+import currentUserReducer from './reducers/current_user_reducer';
+import selectedChannelReducer from './reducers/selected_channel_reducer';
 
 // Reducers
 const reducers = combineReducers({
@@ -23,6 +23,7 @@ const reducers = combineReducers({
   currentUser: currentUserReducer,
   selectedChannel: selectedChannelReducer
 });
+
 
 // Setting initial state
 const initialState = {
