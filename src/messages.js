@@ -1,4 +1,4 @@
-const tempMessage =[
+const tempMessage = [
   {
     "author":"anonymous92",
     "content":"Hello world!",
