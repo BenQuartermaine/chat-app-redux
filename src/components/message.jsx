@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import MessageList from '../containers/message_list'
 
 class Message extends Component {

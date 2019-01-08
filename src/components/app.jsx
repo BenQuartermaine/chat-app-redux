@@ -5,7 +5,7 @@ import tempMessage from '../messages'
 const App = () => {
  return (
     <div className="app">
-      <MessageList tempMessage={tempMessage} />
+      <MessageList />
     </div>
   );
 };

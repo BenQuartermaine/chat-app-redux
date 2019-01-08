@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
+import tempMessage from './messages';
 
 // internal modules
 import App from './components/app';
@@ -26,10 +27,11 @@ const reducers = combineReducers({
 
 
 // Setting initial state
+// prompt('Enter your username please') ||
 const initialState = {
   messages: [],
   channels: ['#all', '#work', '#general'],
-  currentUser: prompt('Enter your username please') || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser: `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: '#all'
 };
 
