@@ -12,7 +12,7 @@ class MessageList extends Component {
   render() {
     return (
       <div className="">
-        {this.props.messages.map((message) => <Message message={message} key={message.author} />)}
+        {this.props.messages.map((message) => <Message message={message} key={message.content} />)}
       </div>
     );
   }
