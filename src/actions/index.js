@@ -1,35 +1,35 @@
 import tempMessage from '../messages';
 
-// TODO: add and export your own actions
 export function getMessages() {
-  const promise = fetch('https://wagon-chat.herokuapp.com/general/messages')
+  return fetch('https://wagon-chat.herokuapp.com/general/messages')
   .then(response => response.json())
-
-  return {
-    type: 'GET_MESSAGES',
-    payload: promise
-  }
+  .then((data) => {
+    return {
+      type: 'GET_MESSAGES',
+      payload: data
+    };
+  })
 }
 
-export function postMessages(event) {
+export function postMessages(author, comment) {
   const url = 'https://wagon-chat.herokuapp.com/general/messages';
-  const body = { author: 'hey', content: "no" };
+  const body = { author: author, content: comment };
+
   const promise = fetch(url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
-  }).then(r => r.json());
-
-  console.log(promise)
-
-  debugger
-
+    body: JSON.stringify({ author: author, content: comment })
+  }).then(response => {
+      response.json()
+      console.log('this is JSON', response.json());
+      debugger
+    });
   return {
     type: 'POST_MESSAGES',
     payload: promise
-  }
+  };
+  getMessages();
 }
-

@@ -6,8 +6,10 @@ import { bindActionCreators } from 'redux';
 class MessageForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      value: 'Comment away...'
+      comment: 'comment..',
+      author: 'name..'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,22 +17,22 @@ class MessageForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ [event.target.name]: event.target.value});
   }
 
   handleSubmit(event) {
-    // alert('An essay was submitted: ' + this.state.value);
-    debugger
-    this.props.postMessages(this.state.value)
-    debugger
+    this.props.postMessages(this.state.author, this.state.comment);
+    console.log(this.state.author, this.state.comment);
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Comment:
-          <textarea value={this.state.value} onChange={this.handleChange} />
+          Author:        
+          <textarea value={this.state.author} name='author'onChange={this.handleChange} />     
+          Comment:    
+          <textarea value={this.state.comment} name='comment' onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -45,7 +47,6 @@ function mapDispatchToProps(dispatch) {
   );
 }
 function mapStateToProps(state) {
-  // console.log("yes",this.props.messagesReducer)
   return {
     messages: state.messages
   }

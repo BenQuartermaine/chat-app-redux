@@ -6,29 +6,42 @@ import { bindActionCreators } from 'redux';
 
 
 class MessageList extends Component {
-  componentWillMount() {
-    this.props.getMessages();
+  constructor(props) {
+    super(props);
+    // this.props.messages = React.createRef();
   }
+
+
+  componentDidMount() {
+    setInterval(this.props.getMessages, 5000);
+    // this.props.messages.scrollHeight = scrollTop;
+  };
+
+  componentWillUnMount() {
+    clearInterval();
+  };
+
   render() {
     return (
       <div className="">
-        {this.props.messages.map((message) => <Message message={message} key={message.content} />)}
+        {this.props.messages.map((message) => <Message message={message} key={message.created_at} />)}
       </div>
     );
   }
-}
+};
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     { getMessages: getMessages },
     dispatch
   );
-}
+};
+
 function mapStateToProps(state) {
-  // console.log("yes",this.props.messagesReducer)
   return {
     messages: state.messages
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageList);
