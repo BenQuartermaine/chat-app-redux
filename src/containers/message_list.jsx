@@ -6,25 +6,22 @@ import { bindActionCreators } from 'redux';
 
 
 class MessageList extends Component {
-  constructor(props) {
-    super(props);
-    // this.props.messages = React.createRef();
-  }
 
 
-  // componentDidMount() {
-  //   setInterval(this.props.getMessages, 5000);
-  //   // this.props.messages.scrollHeight = scrollTop;
-  // };
+  componentDidMount() {
+    setInterval(this.props.getMessages, 5000);
+    // this.props.messages.scrollHeight = scrollTop;
+  };
 
-  // componentWillUnMount() {
-  //   clearInterval();
-  // };
+  componentWillUnMount() {
+    clearInterval();
+  };
 
   render() {
+    console.log(this.props)
     return (
-         <div className="">
-         <p>{this.props.messages.content}</p>
+      <div className="">
+        {this.props.messages.messages.map((message) => <Message message={message} key={message.created_at} />)}
       </div>
     );
   }

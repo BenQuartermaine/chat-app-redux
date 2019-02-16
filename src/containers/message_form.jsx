@@ -22,7 +22,7 @@ class MessageForm extends Component {
 
   handleSubmit(event) {
     this.props.postMessages(this.state.author, this.state.comment);
-    console.log('current state', this.props.messages)
+    console.log('THIS OBJECT', this)
     event.preventDefault();
   }
 

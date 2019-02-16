@@ -1,7 +1,7 @@
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case 'GET_MESSAGES':
-      return action.payload;
+      return action.payload.messages;
     case 'POST_MESSAGES':
       return action.payload;
     default:
