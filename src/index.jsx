@@ -32,7 +32,7 @@ const initialState = {
   messages:   tempMessage,
   channels: ['#all', '#work', '#general'],
   currentUser: `anonymous${Math.floor(10 + (Math.random() * 90))}`,
-  selectedChannel: '#all'
+  selectedChannel: '#general'
 };
 
 // Middleware constant, placed in the provider

@@ -12,19 +12,19 @@ class MessageList extends Component {
   }
 
 
-  componentDidMount() {
-    setInterval(this.props.getMessages, 5000);
-    // this.props.messages.scrollHeight = scrollTop;
-  };
+  // componentDidMount() {
+  //   setInterval(this.props.getMessages, 5000);
+  //   // this.props.messages.scrollHeight = scrollTop;
+  // };
 
-  componentWillUnMount() {
-    clearInterval();
-  };
+  // componentWillUnMount() {
+  //   clearInterval();
+  // };
 
   render() {
     return (
-      <div className="">
-        {this.props.messages.map((message) => <Message message={message} key={message.created_at} />)}
+         <div className="">
+         <p>{this.props.messages.content}</p>
       </div>
     );
   }

@@ -15,21 +15,16 @@ export function postMessages(author, comment) {
   const url = 'https://wagon-chat.herokuapp.com/general/messages';
   const body = { author: author, content: comment };
 
-  const promise = fetch(url, {
+  return fetch(url, {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ author: author, content: comment })
-  }).then(response => {
-      response.json()
-      console.log('this is JSON', response.json());
-      debugger
-    });
-  return {
-    type: 'POST_MESSAGES',
-    payload: promise
-  };
-  getMessages();
+    body: JSON.stringify(body)
+  })
+  .then(response => response.json())
+  .then((data) => {
+    console.log('data',data)
+    return {
+      type: 'POST_MESSAGES',
+      payload: data
+    }
+  })
 }
