@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Message from './message';
+import Message from '../components/message';
+import MessageForm from './message_form';
 import { getMessages } from '../actions';
 import { bindActionCreators } from 'redux';
 
 
 class MessageList extends Component {
   componentWillMount() {
-    console.log("MESSAGE LIST COMP DID MOUNT")
-    setInterval(this.props.getMessages,5000);
+    setInterval(this.props.getMessages, 5000);
     // this.props.messages.scrollHeight = scrollTop;
   };
 
@@ -17,14 +17,14 @@ class MessageList extends Component {
   };
 
   render() {
-    console.log(this.props.messages)
     return (
       <div className="">
         {
-          Object
-            .keys(this.props.messages)
-            .map((message, i) => <Message content={message.content} author={message.author} created_at={message.created_at} key={i} />)
+          this.props.messages.map((message, i) => {
+            return <Message message={message} key={message.id} />;
+          })
         }
+        <MessageForm />
       </div>
     );
   }
@@ -32,11 +32,8 @@ class MessageList extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { getMessages: getMessages },
-    dispatch
-  );
-};
+  return bindActionCreators({ getMessages }, dispatch);
+}
 
 function mapStateToProps(state) {
   return {

@@ -7,16 +7,15 @@ class MessageForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      author: '',
-      message: ''
+    this.state = { 
+      message: '' 
     }
   }
 
   handleSubmit = event => {
-    const author = this.state.author;
     const message = this.state.message;
-    this.props.postMessages(author, message);
+    const currentUser = this.props.currentUser
+    this.props.postMessages(currentUser, message);
     event.preventDefault();
   };
 
@@ -29,13 +28,10 @@ class MessageForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Author:        
-          <textarea placeholder="Name.." name='author' onChange={this.handleChange} />     
-          Comment:    
+        <label>       
           <textarea placeholder="Speak.." name='message' onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <button className="button" placeholder="HELLO" type="submit" value="Submit" />
       </form>
     );
   }
@@ -49,7 +45,8 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
   return {
-    messages: state.messages
+    messages: state.messages,
+    currentUser: state.currentUser
   }
 }
 
