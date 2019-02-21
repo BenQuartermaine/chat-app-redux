@@ -6,10 +6,9 @@ import { bindActionCreators } from 'redux';
 
 
 class MessageList extends Component {
-
-
-  componentDidMount() {
-    setInterval(this.props.getMessages, 5000);
+  componentWillMount() {
+    console.log("MESSAGE LIST COMP DID MOUNT")
+    setInterval(this.props.getMessages,5000);
     // this.props.messages.scrollHeight = scrollTop;
   };
 
@@ -18,10 +17,14 @@ class MessageList extends Component {
   };
 
   render() {
-    console.log(this.props)
+    console.log(this.props.messages)
     return (
       <div className="">
-        {this.props.messages.messages.map((message) => <Message message={message} key={message.created_at} />)}
+        {
+          Object
+            .keys(this.props.messages)
+            .map((message, i) => <Message content={message.content} author={message.author} created_at={message.created_at} key={i} />)
+        }
       </div>
     );
   }

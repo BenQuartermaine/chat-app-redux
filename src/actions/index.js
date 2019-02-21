@@ -1,6 +1,7 @@
 import tempMessage from '../messages';
 
 export function getMessages() {
+
   console.log('firing get messages')
   return fetch('https://wagon-chat.herokuapp.com/general/messages')
   .then(response => response.json())
@@ -13,9 +14,9 @@ export function getMessages() {
   })
 }
 
-export function postMessages(author, comment) {
+export function postMessages(author, message) {
   const url = 'https://wagon-chat.herokuapp.com/general/messages';
-  const body = { author: author, content: comment };
+  const body = { author: author, content: message };
 
   return fetch(url, {
     method: 'POST',
@@ -29,6 +30,4 @@ export function postMessages(author, comment) {
       payload: data
     }
   })
-  this.getMessages();
-  console.log('getmessages fired');
 }

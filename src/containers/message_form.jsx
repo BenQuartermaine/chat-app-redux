@@ -8,32 +8,32 @@ class MessageForm extends Component {
     super(props);
 
     this.state = {
-      comment: 'comment..',
-      author: 'name..'
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+      author: '',
+      message: ''
+    }
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-
-  handleSubmit(event) {
-    this.props.postMessages(this.state.author, this.state.comment);
-    console.log('THIS OBJECT', this)
+  handleSubmit = event => {
+    const author = this.state.author;
+    const message = this.state.message;
+    this.props.postMessages(author, message);
     event.preventDefault();
-  }
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Author:        
-          <textarea value={this.state.author} name='author'onChange={this.handleChange} />     
+          <textarea placeholder="Name.." name='author' onChange={this.handleChange} />     
           Comment:    
-          <textarea value={this.state.comment} name='comment' onChange={this.handleChange} />
+          <textarea placeholder="Speak.." name='message' onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
