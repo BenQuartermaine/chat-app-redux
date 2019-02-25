@@ -6,17 +6,22 @@ import { bindActionCreators } from 'redux';
 class MessageForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = { 
       message: '' 
     }
   }
 
+  componentDidMount() {
+    this.messageBox.focus();
+  }
+
   handleSubmit = event => {
-    const message = this.state.message;
-    const currentUser = this.props.currentUser
-    this.props.postMessages(currentUser, message);
     event.preventDefault();
+    const message = this.state.message;
+    const currentUser = this.props.currentUser;
+    const selectedChannel = this.props.selectedChannel
+    this.props.postMessages(selectedChannel,currentUser, message);
+    this.setState({ message: '' });
   };
 
   handleChange = event => {
@@ -27,26 +32,30 @@ class MessageForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>       
-          <textarea placeholder="Speak.." name='message' onChange={this.handleChange} />
-        </label>
-        <button className="button" placeholder="HELLO" type="submit" value="Submit" />
+      <form className="channel-editor" onSubmit={this.handleSubmit}>
+        <input 
+          className="form-control"
+          type="text"
+          name='message'
+          autoComplete="off"
+          value={this.state.value}
+          ref={(input) => { this.messageBox = input; }}
+          onChange={this.handleChange} 
+        />       
+        <button type="submit">Send</button>
       </form>
     );
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { postMessages: postMessages },
-    dispatch
-  );
+  return bindActionCreators({ postMessages }, dispatch);
 }
 function mapStateToProps(state) {
   return {
     messages: state.messages,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    selectedChannel: state.selectedChannel
   }
 }
 

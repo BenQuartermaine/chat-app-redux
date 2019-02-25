@@ -24,9 +24,9 @@ const reducers = combineReducers({
 
 const initialState = {
   messages: [],
-  channels: ['react', 'paris', '#general'],
+  channels: ['react', 'paris', 'general'],
   currentUser: prompt('What is your user name?') || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
-  selectedChannel: '#general'
+  selectedChannel: 'general'
 };
 
 // Middleware constant, placed in the provider

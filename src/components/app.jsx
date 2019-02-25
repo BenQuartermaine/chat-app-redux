@@ -4,7 +4,8 @@ import ChannelList from '../containers/channel_list';
 
 const App = () => {
  return (
-    <div className="app">
+    <div className="messaging-wrapper">
+      <ChannelList />
       <MessageList />
     </div>
   );

@@ -2,8 +2,7 @@ export const GET_MESSAGES = 'GET_MESSAGES';
 export const POST_MESSAGES = 'POST_MESSAGES';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 
-export function getMessages() {
-  const channel = 'general';
+export function getMessages(channel) {
   const url = `https://wagon-chat.herokuapp.com/${channel}/messages`  
   const promise = fetch(url).then(response => response.json())
 
@@ -13,8 +12,8 @@ export function getMessages() {
   };
 }
 
-export function postMessages(author, content) {
-  const url = 'https://wagon-chat.herokuapp.com/general/messages';
+export function postMessages(selectedChannel,author, content) {
+  const url = `https://wagon-chat.herokuapp.com/${selectedChannel}/messages` ;
   const body = { author, content };
   const promise = fetch(url, {
     method: 'POST',
@@ -38,4 +37,3 @@ export function selectChannel(channel) {
   }
 }
 
-// TODO Add a select channel function
