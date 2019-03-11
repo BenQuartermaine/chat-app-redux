@@ -1,11 +1,12 @@
-// external modules
+// External modules
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import reduxPromise from 'redux-promise';
-// internal modules
+
+// Internal modules
 import App from './components/app';
 import '../assets/stylesheets/application.scss';
 
@@ -13,8 +14,10 @@ import '../assets/stylesheets/application.scss';
 import messagesReducer from './reducers/messages_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
 
+// A dummy reducer for reducers that have no associate action
 const identityReducer = (state = null) => state;
 
+// Combining reducers
 const reducers = combineReducers({
   messages: messagesReducer,
   channels: identityReducer,
@@ -22,10 +25,11 @@ const reducers = combineReducers({
   selectedChannel: selectedChannelReducer
 });
 
+// Setting the initial state of each store value
 const initialState = {
   messages: [],
   channels: ['react', 'paris', 'general'],
-  currentUser: prompt('What is your user name?') || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser: prompt('Choose a username') || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
 };
 

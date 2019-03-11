@@ -16,12 +16,11 @@ class MessageForm extends Component {
   }
 
   handleSubmit = event => {
+    this.setState({ message: '' });
     event.preventDefault();
     const message = this.state.message;
-    const currentUser = this.props.currentUser;
-    const selectedChannel = this.props.selectedChannel
+    const  { currentUser, selectedChannel } = this.props;
     this.props.postMessages(selectedChannel,currentUser, message);
-    this.setState({ message: '' });
   };
 
   handleChange = event => {
@@ -38,7 +37,7 @@ class MessageForm extends Component {
           type="text"
           name='message'
           autoComplete="off"
-          value={this.state.value}
+          value={this.state.message}
           ref={(input) => { this.messageBox = input; }}
           onChange={this.handleChange} 
         />       
